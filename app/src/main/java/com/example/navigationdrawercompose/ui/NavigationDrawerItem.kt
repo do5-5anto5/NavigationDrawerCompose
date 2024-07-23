@@ -59,4 +59,14 @@ sealed class NavigationDrawerItem(
         ORDER,
         FAVORITE
     }
+
+    companion object {
+        val items = listOf(
+            Home,
+            Search,
+            Notification,
+            Order,
+            Favorite
+        )
+    }
 }
