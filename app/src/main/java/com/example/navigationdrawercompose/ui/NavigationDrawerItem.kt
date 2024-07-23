@@ -30,7 +30,7 @@ sealed class NavigationDrawerItem(
 
     data object Notification : NavigationDrawerItem(
         type = NavigationDrawerType.NOTIFICATION,
-        badge = 0,
+        badge = 5,
         title = R.string.label_notifications_navigation_drawer_item,
         selectedIcon = R.drawable.notification_2_fill,
         unselectedIcon = R.drawable.notification_2_line
