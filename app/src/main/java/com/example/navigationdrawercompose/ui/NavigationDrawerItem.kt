@@ -1,4 +1,4 @@
-package com.example.navigationdrawercompose.ui.theme
+package com.example.navigationdrawercompose.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
