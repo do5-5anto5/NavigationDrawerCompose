@@ -11,6 +11,7 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
@@ -37,6 +38,7 @@ fun NavigationDrawerST(
     drawerState: DrawerState,
     items: List<NavigationDrawerItem>,
     drawerIndex: Int,
+    content: @Composable () -> Unit,
     onClick: (Int) -> Unit = {}
 ) {
     ModalNavigationDrawer(
@@ -44,15 +46,14 @@ fun NavigationDrawerST(
             ModalDrawerSheet {
                 Spacer(modifier = Modifier.size(16.dp))
                 items.forEachIndexed { index, drawerItem ->
-                    androidx.compose.material3.NavigationDrawerItem(
+                    NavigationDrawerItem(
                         label = {
                             Text(text = stringResource(id = drawerItem.title))
                         },
                         selected = index == drawerIndex,
                         onClick = { onClick(index) },
-                        modifier = Modifier.padding(
-                            NavigationDrawerItemDefaults.ItemPadding
-                        ),
+                        modifier = Modifier
+                            .padding(NavigationDrawerItemDefaults.ItemPadding),
                         icon = {
                             Icon(
                                 painter = if (index == drawerIndex) {
@@ -91,22 +92,23 @@ fun NavigationDrawerST(
             }
         },
         modifier = modifier,
-        drawerState = drawerState
-    ) {
-    }
+        drawerState = drawerState,
+        content = content
+    )
 }
 
 @Preview
 @Composable
 private fun NavigationDrawerYTPreview() {
     NavigationDrawerComposeTheme {
-        val drawerState = rememberDrawerState(DrawerValue.Open)
+        val drawerState = rememberDrawerState(DrawerValue.Closed)
         var drawerIndex by remember { mutableIntStateOf(0) }
 
         NavigationDrawerST(
             drawerState = drawerState,
             items = NavigationDrawerItem.items,
             drawerIndex = drawerIndex,
+            content = {},
             onClick = {
                 drawerIndex = it
             }
